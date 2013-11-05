@@ -94,7 +94,7 @@ app/
 
 
 ## 参考资源
-1. [Backbone帮助](http://backbonejs.org)
+1. [Backbone帮助11](http://backbonejs.org)
 2. [Backbone源码分析](http://www.cnblogs.com/nuysoft/archive/2012/03/19/2404274.html)
 3. [Backbone设计模式](http://ricostacruz.com/backbone-patterns/)
 4. [Backbone.js Fundamentals](http://addyosmani.github.com/backbone-fundamentals/)
