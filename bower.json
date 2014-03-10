@@ -1,0 +1,7 @@
+{
+	"name": "myTest"
+	,"version": "0.0.1"
+	,"dependencies": {
+		"talent": "~0.3"
+	}
+}

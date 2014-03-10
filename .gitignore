@@ -1,0 +1,5 @@
+.DS_Store
+/node_modules/
+/app/scripts/templates/
+/app/scripts/vendor/components/
+/release/
