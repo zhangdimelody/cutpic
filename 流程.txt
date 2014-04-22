@@ -2,3 +2,4 @@
 
 2.通过git clone 从远程上下载一份下来
 or git remote add origin 
+d
