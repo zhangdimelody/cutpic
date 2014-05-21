@@ -1,0 +1,12 @@
+<ul class="upload_files"></ul>
+<div class="upload_loading">上传中...</div>
+<div class="upload_error"></div>
+<form class="upload_form" action="<%=url%>" method="post" enctype="multipart/form-data" target="upload_target">
+	<div class="upload_text"><%=text%></div>
+	<input type="hidden" name="callback" value="<%=callbackName%>" />
+	<input type="hidden" name="ElinkId" value="<%=eLinkId%>" />
+	<input type="hidden" name="bizType" value="<%=bizType%>" />
+	<input type="hidden" name="personId" value="<%=personId%>" />
+	<input type="hidden" name="relationId" value="<%=jobId%>" />
+	<input type="file" name="files" class="upload_file" />
+</form>

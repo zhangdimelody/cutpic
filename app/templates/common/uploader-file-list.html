@@ -1,0 +1,11 @@
+<% _.each(list, function(item){ %>
+<li data-id="<%=item.Id%>">
+	<span title="<%-item.Name%>"><%-item.ShortName%></span>
+	<% if(showPreview){ %>
+		<a href="<%-item.PreviewUrl%>" target="_blank">预览</a>
+	<% } %>
+	<% if(limit >= 1){ %>
+		<a class="upload_del" href="javascript:void(0)">移除</a>
+	<% } %>
+</li>
+<% }); %>

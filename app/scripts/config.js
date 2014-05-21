@@ -7,6 +7,9 @@ require.config({
 		,"_": "vendor/components/lodash/index"
 		,"requirejs": "vendor/components/requirejs/index"
 		,"talent" : 'vendor/components/talent/index'
+    	,'$.simplemodal' : 'vendor/legacy/jquery.simplemodal'
+		,'$.migrate' : 'vendor/legacy/jquery-migrate-1.2.1'
+		,"Jcrop" : 'vendor/legacy/jquery.Jcrop.min'
 	},
 	shim: {
 		'$': {
@@ -27,5 +30,10 @@ require.config({
 			deps: ['marionette'],
 			exports: 'Talent'
 		}
+        ,'$.simplemodal':['$']
+        ,'$.migrate':['$']
+		,'Jcrop': {
+            deps: ['$','$.migrate']
+        }
 	}
 });
