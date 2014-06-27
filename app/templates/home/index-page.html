@@ -1,28 +1,22 @@
-<div class="zxx_out_box">
-    <div class="zxx_in_box">
-         
-        <h1 class="zxx_title">Jcrop照片剪裁插件实时演示</h1>
-        
-        <div class="zxx_main_con">
-		    <div class="zxx_test_list">
-		        <div class="rel mb20">
-		            <img id="xuwanting" src="http://stnew03.beisen.com/ux/tms-cc/release/app/images/zd.jpg"  style="width: expression(this.width > 500 && this.width > this.height ? 500 : true); max-width:500px; overflow:hidden;" />
-		            <span id="preview_box" class="crop_preview">
-		                <img id="crop_preview" src="http://stnew03.beisen.com/ux/tms-cc/release/app/images/zd.jpg" />
-		            </span>
-		        </div>
-	            <input type="hidden" id="x" name="x" />
-	            <input type="hidden" id="y" name="y" />
-	            <input type="hidden" id="w" name="w" />
-	            <input type="hidden" id="h" name="h" />
-	            <input type="button" value="确认剪裁" class="jcrop_submit" />
 
-		    </div>
-		    <p>X坐标：<span class="jcrop_x"></span></p>
+<div class="zxx_main_con">
+    <div class="zxx_test_list">
+        <div class="rel mb20">
+            <img class="xuwanting" src="http://test.com/images/zd.jpg"  style="" />
+            <span class="preview_box crop_preview">
+                <img class="img_crop_preview" src="http://test.com/images/zd.jpg" />
+            </span>
+        </div>  
+        <form class="crop_form">
+            <input type="hidden" class="x" name="x" />
+            <input type="hidden" class="y" name="y" />
+            <input type="hidden" class="w" name="w" />
+            <input type="hidden" class="h" name="h" />
+            <a class="crop_submit save_btn"><span>确认剪裁</span></a>
+        </form>
+    </div>
+    <p>X坐标：<span class="jcrop_x"></span></p>
 		    <p>Y坐标：<span class="jcrop_y"></span></p>
 		    <p>宽：<span class="jcrop_w"></span></p>
 		    <p>高：<span class="jcrop_h"></span></p>
-		</div>
-        
-    </div>
 </div>
