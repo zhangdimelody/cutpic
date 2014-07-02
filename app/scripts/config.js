@@ -9,7 +9,7 @@ require.config({
 		,"talent" : 'vendor/components/talent/index'
     	,'$.simplemodal' : 'vendor/legacy/jquery.simplemodal'
 		,'$.migrate' : 'vendor/legacy/jquery-migrate-1.2.1'
-		,"Jcrop" : 'vendor/legacy/jquery.Jcrop.min'
+		,"Jcrop" : 'vendor/legacy/jquery.Jcrop'
 	},
 	shim: {
 		'$': {

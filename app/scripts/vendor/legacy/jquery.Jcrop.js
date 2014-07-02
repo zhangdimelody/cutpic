@@ -1168,7 +1168,10 @@ $.fn.Jcrop = function(options)/*{{{*/
 	{
 		var loadsrc = options.useImg || from.src;
 		var img = new Image();
-		img.onload = function() { $.Jcrop(from,options); };
+		img.onload = function() { 
+			$.Jcrop(from,options); 
+			$('body').trigger('jcrop:load');
+		};
 		img.src = loadsrc;
 	};
 	/*}}}*/
