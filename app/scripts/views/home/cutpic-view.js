@@ -9,10 +9,10 @@ define(['talent'
 
 		template: jst['home/cutpic-page']
 		,initialize: function() {
-
+			this.userDesign = 500;
 		}
 		,ui:{
-			 "jcropSubmit" : ".jcrop_wrap a.crop_submit"
+			"jcropSubmit" : ".jcrop_wrap a.crop_submit"
 		}
 		,events:function(){
 			var events = {};
@@ -26,24 +26,23 @@ define(['talent'
 			var realwidth = parseInt(this.$el.find(".jcrop-holder img").css("width"));
 			var realheight = parseInt(this.$el.find(".jcrop-holder img").css("height"));
 			var cutwidth,cutheight;
-			if(realwidth > 500){
-				self.raitoNo = realwidth/500;
+			if(realwidth > this.userDesign){
+				self.raitoNo = realwidth/this.userDesign;
 			}
 
 			// 超过500缩小
-            if(realwidth>500)   
-            {   
-                cutwidth=500;   
-                cutheight=(realheight*500)/realwidth;   
+            if(realwidth>this.userDesign)
+            {
+            	// boxWidth
+                this.cutwidth=this.userDesign;   
+                this.cutheight=(realheight*this.userDesign)/realwidth;   
             }else{
-            	cutwidth = realwidth;
-            	cutheight = realheight;
-            }		
+            	this.cutwidth = realwidth;
+            	this.cutheight = realheight;
+            }
 
-	        this.$el.find(".xuwanting").css({ "width" : cutwidth, "height" : cutheight });
-	        this.$el.find(".jcrop-holder").css({ "width" : cutwidth, "height" : cutheight });
-	        this.$el.find(".jcrop-tracker").css({ "width" : cutwidth, "height" : cutheight });
-	        this.$el.find(".jcrop-holder img").css({ "width" : cutwidth, "height" : cutheight });
+	        this.$el.find(".xuwanting, .jcrop-holder, .jcrop-tracker, .jcrop-holder img, img.img_crop_preview")
+	        .css({ "width" : this.cutwidth, "height" : this.cutheight });
 			
 		}
 		,onRender: function() {
@@ -58,6 +57,7 @@ define(['talent'
 			//剪切头像
 			this.$el.find(".xuwanting").Jcrop({
 				aspectRatio:1,
+				boxWidth: self.userDesign,
 				onChange:showCoords,
 				onSelect:showCoords
 			},function(){
