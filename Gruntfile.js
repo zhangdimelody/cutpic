@@ -14,6 +14,12 @@ module.exports = function( grunt ) {
 				]
 				,tasks: 'jst'
 			}
+			,preprocess: {
+				files: [
+					'src/js/*.js'
+				]
+				,tasks: 'preprocess'
+			}
 		}
 		,requirejs: {
 			options: {
@@ -103,6 +109,20 @@ module.exports = function( grunt ) {
 				}
 			}
 		}
+		,preprocess: {
+			build: {
+				src: [
+					'src/index.js'
+				],
+				dest: 'app/scripts/vendor/components/cutpic/index.js'
+			}
+			,dist: {
+				src: [
+					'src/index.js'
+				],
+				dest: 'index.js'
+			}
+		}		
 	};
 
 
@@ -144,7 +164,7 @@ module.exports = function( grunt ) {
 	// 通过grunt.registerTask()来注册任务
 	grunt.registerTask('js', ['jst','requirejs','uglify']); // 执行js下的jst子任务
 	grunt.registerTask('css', ['cssjoin','cssmin']);
-	grunt.registerTask('local', ['jst','watch']);
+	grunt.registerTask('local', ['jst','preprocess','watch']);
 	grunt.registerTask('server', ['jst','connect','watch']);
 
 	require('load-grunt-tasks')(grunt);

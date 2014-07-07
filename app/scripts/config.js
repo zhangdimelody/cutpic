@@ -9,7 +9,7 @@ require.config({
 		,"talent" : 'vendor/components/talent/index'
     	,'$.simplemodal' : 'vendor/legacy/jquery.simplemodal'
 		,'$.migrate' : 'vendor/legacy/jquery-migrate-1.2.1'
-		,"Jcrop" : 'vendor/legacy/jquery.Jcrop'
+		,"CutPicView" : 'vendor/components/cutpic/index'
 	},
 	shim: {
 		'$': {
@@ -32,7 +32,7 @@ require.config({
 		}
         ,'$.simplemodal':['$']
         ,'$.migrate':['$']
-		,'Jcrop': {
+        ,'CutPicView': {
             deps: ['$','$.migrate']
         }
 	}

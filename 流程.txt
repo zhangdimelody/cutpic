@@ -1,5 +1,0 @@
-1.下载生成器，通过 yo talent 下载项目
-
-2.通过git clone 从远程上下载一份下来
-or git remote add origin 
-dddd

@@ -1,20 +1,14 @@
-define(['talent'
-	,'templates/home'
-	,'Jcrop'
-],function(Talent
-	,jst
-	,Jcrop
-) {
+ 
 	var jst = (function(){
 	
 		this["JST"] = this["JST"] || {};
 	
-		// this["JST"]["home/cutpic-page"] = function(obj) {obj || (obj = {});var __t, __p = '', __e = _.escape;with (obj) {__p += '<div class="jcrop_wrap">\r\n    <div class="zxx_main_con">\r\n        <div class="zxx_test_list">\r\n            <div class="rel mb20">\r\n                <img class="xuwanting" src="http://test.com/images/zd.jpg"  style="" />\r\n                <span class="preview_box crop_preview">\r\n                    <img class="img_crop_preview" src="http://test.com/images/zd.jpg" />\r\n                </span>\r\n            </div>  \r\n            <form class="crop_form">\r\n                <input type="hidden" class="x" name="x" />\r\n                <input type="hidden" class="y" name="y" />\r\n                <input type="hidden" class="w" name="w" />\r\n                <input type="hidden" class="h" name="h" />\r\n                <a class="crop_submit save_btn" ><span>确认剪裁</span></a>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>';}return __p};
+		this["JST"]["home/cutpic-page"] = function(obj) {obj || (obj = {});var __t, __p = '', __e = _.escape;with (obj) {__p += '<div class="jcrop_wrap">\r\n    <div class="zxx_main_con">\r\n        <div class="zxx_test_list">\r\n            <div class="rel mb20">\r\n                <img class="xuwanting" src="/images/zd.jpg"  style="" />\r\n                <span class="preview_box crop_preview">\r\n                    <img class="img_crop_preview" src="/images/zd.jpg" />\r\n                </span>\r\n            </div>  \r\n            <form class="crop_form">\r\n                <input type="hidden" class="x" name="x" />\r\n                <input type="hidden" class="y" name="y" />a\r\n                <input type="hidden" class="w" name="w" />\r\n                <input type="hidden" class="h" name="h" />\r\n                <a class="crop_submit save_btn" ><span>确认剪裁</span></a>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>';}return __p};
 
 		return this["JST"];
 	})();
 	
-	return Talent.ItemView.extend({
+	var itemView = Talent.ItemView.extend({
 
 		template: jst['home/cutpic-page']
 		,initialize: function() {
@@ -101,7 +95,7 @@ define(['talent'
 		,onClose:function(){
 		}
 		,cropSubmit:function(){
-			if(parseInt(this.$el.find(".x").val())){
+			if(parseInt(this.$el.find(".w").val())){
 				
 				console.log("X坐标："+ parseInt(this.$el.find(".x").val()));
 				console.log("Y坐标："+ parseInt(this.$el.find(".y").val()));
@@ -113,4 +107,3 @@ define(['talent'
 		}
 	});
  
-});
