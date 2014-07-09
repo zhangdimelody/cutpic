@@ -165,7 +165,7 @@ module.exports = function( grunt ) {
 	grunt.registerTask('js', ['jst','requirejs','uglify']); // 执行js下的jst子任务
 	grunt.registerTask('css', ['cssjoin','cssmin']);
 	grunt.registerTask('local', ['jst','preprocess','watch']);
-	grunt.registerTask('server', ['jst','connect','watch']);
+	grunt.registerTask('server', ['jst','connect','preprocess','watch']);
 
 	require('load-grunt-tasks')(grunt);
 
