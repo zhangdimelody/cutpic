@@ -32,3 +32,4 @@
 [Jcrop的参数说明和Demo](http://code.ciaoca.com/jquery/jcrop/)
 
 
+>>>>>>> b2967840399b0a0cc2ca018a1a4e27a249a5eafd
