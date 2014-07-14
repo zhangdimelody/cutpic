@@ -21,7 +21,7 @@ define(['talent'
 			this.userDesign = 500;
 		}
 		,ui:{
-			"jcropSubmit" : ".jcrop_wrap a.crop_submit"
+			
 		}
 		,events:function(){
 			var events = {};
