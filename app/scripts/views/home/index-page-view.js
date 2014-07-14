@@ -9,7 +9,24 @@ define(['talent'
 	var MainView = Talent.Layout.extend({
 
 		template: jst['home/index-page']
+		,tipTemplate: _.template('x坐标:<%=x%>;y坐标:<%=y%>;宽度:<%=w%>;高度:<%=h%>;')
 		,initialize: function() {
+			
+			this.cutpicView = new CutpicView({
+				model : new Talent.Model({
+					x:303
+					,y:73
+					,w:190
+					,h:190
+					,originWidth:500
+					,previewBox:true
+				})
+			});
+
+			this.listenTo(this.cutpicView.model,'change',function(){
+				console.log(this.cutpicView.model.toJSON());
+			});
+
 		}
 		,regions:{
 			"cutPic" : ".cut_pic_wrap"
@@ -23,22 +40,20 @@ define(['talent'
 			return events;
 		}
 		,cropSubmit:function(){
-			if(this.cutpicView.model.toJSON().w==0){
+			var modelData = this.cutpicView.model.toJSON();
+			if(modelData.w==0){
 				alert("请先画出要剪裁部分");
 			}else{
-				this.$el.find("a.crop_submit").after('x坐标:'+this.cutpicView.model.toJSON().x
-					+'y坐标:'+this.cutpicView.model.toJSON().y
-					+'宽:'+this.cutpicView.model.toJSON().w+'高:'+this.cutpicView.model.toJSON().h);
+				this.showTip(modelData);
 			}
+		}
+		,showTip: function(modelData) {
+			this.$el.find(".tip").html(this.tipTemplate(modelData));
 		}
 		,onRender: function() {
 		}
 		,onShow: function() {
-			this.cutpicView = new CutpicView({model : new Talent.Model({x:303,y:73,w:190,h:190,originWidth:500,previewBox:true})});
 			this.cutPic.show(this.cutpicView);
-			this.listenTo(this.cutpicView.model,'change',function(){
-				console.log(this.cutpicView.model.toJSON());
-			});
 		}
 		,onClose:function(){
 		}
