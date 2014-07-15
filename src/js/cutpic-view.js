@@ -32,21 +32,6 @@
 				// 比率 this.raitoNo
 				self.raitoNo = realwidth/this.userDesign;
 			}
-
-			// 超过500缩小
-         //    if(realwidth>this.userDesign)
-         //    {
-         //    	// boxWidth
-         //        this.cutwidth=this.userDesign;   
-         //        this.cutheight=(realheight*this.userDesign)/realwidth;   
-         //    }else{
-         //    	this.cutwidth = realwidth;
-         //    	this.cutheight = realheight;
-         //    }
-
-	        // this.$el.find(".xuwanting, .jcrop-holder, .jcrop-tracker, .jcrop-holder img")
-	        // .css({ "width" : this.cutwidth, "height" : this.cutheight });
-			
 		}
 		,inputChange:function(){
 			var x = parseInt(this.$el.find(".jcrop_wrap .x").val());
@@ -58,24 +43,20 @@
 			})
 		}
 		,onRender: function() {
-		}
-		,onShow: function() {
+			
 			var self = this;
 			var jcrop_api;
-			
-			$('body').on('jcrop:load', function(){
-				self.raito();
-			});
+			var modelDate = this.model.toJSON();
 			//剪切头像
 			this.$el.find(".xuwanting").Jcrop({
 				aspectRatio:1,
 				boxWidth: self.userDesign,
-				setSelect: [this.model.toJSON().x,this.model.toJSON().y,this.model.toJSON().w,this.model.toJSON().h],
+				setSelect: [modelDate.x, modelDate.y, modelDate.w, modelDate.h],
 				onChange:showCoords,
 				onSelect:showCoords
 			},function(){
-				// jcrop_api=this;
-				// jcrop_api.animateTo([100,100,400,300]);
+				jcrop_api=this;
+				jcrop_api.setImage(modelDate.imgUrl);
 			});	
 
 			//简单的事件处理程序，响应自onChange,onSelect事件，按照上面的Jcrop调用
@@ -100,6 +81,16 @@
 					});
 				}
 			}
+		}
+		,onShow: function() {
+			var self = this;
+			var jcrop_api;
+			var modelDate = this.model.toJSON();
+
+			$('body').on('jcrop:load', function(){
+				self.raito();
+			});
+			
 
 			if(!(this.model.toJSON().previewBox)){
 				this.$el.find('.jcrop_wrap .crop_preview').hide();
