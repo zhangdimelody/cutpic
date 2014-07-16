@@ -14,11 +14,11 @@ define(['talent'
 			
 			this.cutpicView = new CutpicView({
 				model : new Talent.Model({
-					imgUrl : "/images/zzd.jpg"
+					imgUrl : "/images/zd.jpg"
 					,x:0
 					,y:0
-					,w:220
-					,h:220
+					,w:200
+					,h:200
 					,originWidth:500
 					,previewBox:true
 				})
