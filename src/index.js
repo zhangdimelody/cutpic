@@ -1,7 +1,7 @@
 define(['talent'],function(talent) {
 	
-	// @include js/jquery.Jcrop.js
-	// @include js/cutpic-view.js
+	// @include scripts/jquery.Jcrop.js
+	// @include scripts/cutpic-view.js
 
 	return itemView;
 })
