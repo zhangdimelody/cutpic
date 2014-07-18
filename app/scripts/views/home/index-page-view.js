@@ -52,9 +52,6 @@ define(['talent'
 				this.showTip(modelData);
 			}
 		}
-		,showTip: function(modelData) {
-			this.$el.find(".tip").html(this.tipTemplate(modelData));
-		}
 		,onRender: function() {
 		}
 		,onShow: function() {
