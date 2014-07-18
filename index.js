@@ -1606,7 +1606,7 @@ define(['talent'],function(talent) {
 		
 			this["JST"] = this["JST"] || {};
 		
-			this["JST"]["home/cutpic-page"] = function(obj) {obj || (obj = {});var __t, __p = '', __e = _.escape;with (obj) {__p += '<div class="jcrop_wrap">\r\n    <div class="zxx_main_con">\r\n        <div class="zxx_test_list">\r\n            <div class="rel mb20">\r\n                <img class="originimage" id="originimage" src="' +((__t = (imgUrl)) == null ? '' : __t) +'"  style="" />\r\n                <span class="preview_box crop_preview">\r\n                    <img class="img_crop_preview" src="' +((__t = (imgUrl)) == null ? '' : __t) +'" />\r\n                </span>\r\n            </div>  \r\n            <form class="crop_form">\r\n                <input type="hidden" class="x" name="x" />\r\n                <input type="hidden" class="y" name="y" />\r\n                <input type="hidden" class="w" name="w" />\r\n                <input type="hidden" class="h" name="h" />\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>';}return __p};
+			// this["JST"]["home/cutpic-page"] = function(obj) {obj || (obj = {});var __t, __p = '', __e = _.escape;with (obj) {__p += '<div class="jcrop_wrap">\r\n    <div class="zxx_main_con">\r\n        <div class="zxx_test_list">\r\n            <div class="rel mb20">\r\n                <img class="originimage" id="originimage" src="' +((__t = (imgUrl)) == null ? '' : __t) +'"  style="" />\r\n                <span class="preview_box crop_preview">\r\n                    <img class="img_crop_preview" src="' +((__t = (imgUrl)) == null ? '' : __t) +'" />\r\n                </span>\r\n            </div>  \r\n            <form class="crop_form">\r\n                <input type="hidden" class="x" name="x" />\r\n                <input type="hidden" class="y" name="y" />\r\n                <input type="hidden" class="w" name="w" />\r\n                <input type="hidden" class="h" name="h" />\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>';}return __p};
 	
 			return this["JST"];
 		})();
@@ -1625,26 +1625,9 @@ define(['talent'],function(talent) {
 				var events = {};
 				return events;
 			}
-			,raito:function(){
-				var self = this;
-				var userDesign = this.model.get('originWidth');
-				this.raitoNo = 1;
-				var realwidth = parseInt(this.$el.find(".jcrop-holder img").css("width"));
-				var realheight = parseInt(this.$el.find(".jcrop-holder img").css("height"));
-				var cutwidth,cutheight;
-				if(realwidth > userDesign){
-					// 比率 this.raitoNo
-					self.raitoNo = realwidth/userDesign;
-				}
-			}
-			,inputChange:function(){
-				var x = parseInt(this.$el.find(".jcrop_wrap .x").val());
-				var y = parseInt(this.$el.find(".jcrop_wrap .y").val());
-				var w = parseInt(this.$el.find(".jcrop_wrap .w").val());
-				var h = parseInt(this.$el.find(".jcrop_wrap .h").val());
-				this.model.set({
-					'x':x, 'y':y, 'w':w, 'h':h
-				})
+			,setModelData:function(obj){
+				this.model.set(obj);
+				this.listenTo(this.model,'change',this.ajustPreview);
 			}
 			,onRender: function() {
 				
@@ -1663,37 +1646,34 @@ define(['talent'],function(talent) {
 				var jcrop_api;
 				var modelDate = this.model.toJSON();
 				//剪切头像
-				$("#originimage").Jcrop({
+				this.$el.find(".originimage").Jcrop({
 					aspectRatio:1,
 					boxWidth: userDesign,
 					setSelect: [modelDate.x, modelDate.y, modelDate.w, modelDate.h],
-					onChange:showCoords,
-					onSelect:showCoords
+					onChange:showPreview,
+					onSelect:showPreview
 				}, function() {
-					self.raito();
+					self.trigger('imageAlready');
 				});	
 	
 				//简单的事件处理程序，响应自onChange,onSelect事件，按照上面的Jcrop调用
-				function showCoords(obj){
-					 
-					self.$el.find(".x").val(obj.x);
-					self.$el.find(".y").val(obj.y);
-					self.$el.find(".w").val(obj.w);
-					self.$el.find(".h").val(obj.h);
-	
-					self.inputChange();
-					if(parseInt(obj.w) > 0){
-						//计算预览区域图片缩放的比例，通过计算显示区域的宽度(与高度)与剪裁的宽度(与高度)之比得到
-						var rx = self.$el.find(".preview_box").width() / obj.w; 
-						var ry = self.$el.find(".preview_box").height() / obj.h;
-						//通过比例值控制图片的样式与显示
-						self.$el.find(".img_crop_preview").css({
-							width:Math.round(rx * self.$el.find(".originimage").width()) + "px",	//预览图片宽度为计算比例值与原图片宽度的乘积
-							height:Math.round(rx * self.$el.find(".originimage").height()) + "px",	//预览图片高度为计算比例值与原图片高度的乘积
-							marginLeft:"-" + Math.round(rx * obj.x) + "px",
-							marginTop:"-" + Math.round(ry * obj.y) + "px"
-						});
-					}
+				function showPreview(obj){
+					self.setModelData(obj);				
+				}
+			}
+			,ajustPreview:function(){
+				var obj = this.model.toJSON();
+				if(parseInt(obj.w) > 0){
+					//计算预览区域图片缩放的比例，通过计算显示区域的宽度(与高度)与剪裁的宽度(与高度)之比得到
+					var rx = this.$el.find(".preview_box").width() / obj.w; 
+					var ry = this.$el.find(".preview_box").height() / obj.h;
+					//通过比例值控制图片的样式与显示
+					this.$el.find(".img_crop_preview").css({
+						width:Math.round(rx * this.$el.find(".originimage").width()) + "px",	//预览图片宽度为计算比例值与原图片宽度的乘积
+						height:Math.round(rx * this.$el.find(".originimage").height()) + "px",	//预览图片高度为计算比例值与原图片高度的乘积
+						marginLeft:"-" + Math.round(rx * obj.x) + "px",
+						marginTop:"-" + Math.round(ry * obj.y) + "px"
+					});
 				}
 			}
 			,onClose:function(){

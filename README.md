@@ -31,7 +31,7 @@ this.listenTo(this.cutpicView.model,'change',function(){
 ````
 
 ## 4. 其他参数
-* 初始化
+* 初始化参数
 
 ````
 this.cutpicView = new CutpicView({
@@ -47,5 +47,13 @@ this.cutpicView = new CutpicView({
 			});
 ````
 
+* 监听图片已经加载完毕
+
+````
+this.listenTo(this.cutpicView,'imageAlready',function(){
+				console.log("图片已加载完");
+			});
+
+````
 ## 5.参考资源
 [Jcrop的参数说明和Demo](http://code.ciaoca.com/jquery/jcrop/)

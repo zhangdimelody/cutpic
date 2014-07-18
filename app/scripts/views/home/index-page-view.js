@@ -28,6 +28,10 @@ define(['talent'
 				console.log(this.cutpicView.model.toJSON());
 			});
 
+			this.listenTo(this.cutpicView,'imageAlready',function(){
+				console.log("图片已加载完");
+			});
+
 		}
 		,regions:{
 			"cutPic" : ".cut_pic_wrap"
